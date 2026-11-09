@@ -1,0 +1,7 @@
+{
+  "presets": [
+    { "name": "morning", "time": "07:01:30", "wait": 12 },
+    { "name": "day",     "time": "09:02:30", "wait": 12 },
+    { "name": "night",   "time": "19:46:30", "wait": 12 }
+  ]
+}

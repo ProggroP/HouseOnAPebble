@@ -1,0 +1,59 @@
+{
+    "author": "Axel Kark",
+    "dependencies": {
+        "@rebble/clay": "1.0.8"
+    },
+    "keywords": [
+        "pebble-app",
+        "watchface",
+        "houseonapebble"
+    ],
+    "name": "houseonapebble",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "House on a Pebble",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "INTERVAL",
+            "VIBRATE"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/house_emery.png",
+                    "name": "IMAGE_HOUSE",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/house_gabbro.png",
+                    "name": "IMAGE_HOUSE",
+                    "targetPlatforms": [
+                        "gabbro"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/tenant.png",
+                    "name": "IMAGE_TENANT",
+                    "type": "bitmap"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "emery",
+            "gabbro"
+        ],
+        "uuid": "83987005-c001-4988-87ea-1c4a6c90703e",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}

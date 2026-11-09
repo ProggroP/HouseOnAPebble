@@ -1,0 +1,45 @@
+House on a Pebble - Rebble App Store listing
+
+Wird bei jeder Veroeffentlichung mit aktualisiert. Englisch, reiner Text,
+jeder Absatz und jeder Listenpunkt auf EINER Zeile (der Store uebernimmt
+Umbrueche woertlich). Pruefen mit .\pb.ps1 finish houseonapebble
+
+-------------------------------------------------------------------------
+
+TITLE
+
+House on a Pebble
+
+
+TAGLINE
+
+A tiny housemate lives on your wrist, cooking, reading and stargazing as the day goes by.
+
+
+DESCRIPTION
+
+Your watch now has a tenant. A little character in a bobble hat lives in a cross-section house above the time and follows a daily routine: a bath in the morning, cooking at mealtimes, tinkering with a model rocket in the attic, TV on the sofa, a look through the telescope after dark, and bed at eleven.
+
+Every so often your housemate walks to another room, up and down the stairs. Sky and house follow the time of day, from a pink dawn to a starry night, when only the room your housemate is in stays lit. The lights go out at bedtime. Flick your wrist to see what is going on: the current activity plays for a few seconds.
+
+The animation only runs for a few seconds at a time, so the face stays still and easy on the battery the rest of the time. Made for Pebble Time 2 and Pebble Round 2, with the house drawn to fit each screen.
+
+
+SETTINGS
+
+- Moves to another room - every minute, every 5 minutes, every 15 minutes or every hour. More frequent walks use a little more battery. At night your housemate stays in bed whatever you choose.
+- Vibrate before walking - off by default. A short buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time, at bedtime and when getting up.
+
+12 or 24 hour format follows the watch setting.
+
+
+CATEGORY
+
+Watchfaces
+
+
+RELEASE NOTES
+
+1.0.0
+
+First release.
