@@ -56,7 +56,7 @@ First release.
 
 ## Status
 
-Version 1.0.0 is in the store, 1.1.0 is ready. Tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
+Version 1.1.0 is in the store (released 2026-11-09, screenshots unchanged since 1.0.0). Tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
 
 On a real watch (1.0.0): the Clay page works, the wrist flick triggers reliably, the figure is readable; the 80 ms buzz was barely noticeable, hence the strengths in 1.1.0.
 
