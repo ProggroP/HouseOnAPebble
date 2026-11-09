@@ -26,11 +26,24 @@ module.exports = [
         ]
       },
       {
-        "type": "toggle",
-        "messageKey": "VIBRATE",
-        "defaultValue": false,
+        "type": "select",
+        "messageKey": "VIBE_LEVEL",
+        "defaultValue": "0",
         "label": "Vibrate before walking",
-        "description": "A short buzz a few seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time and at bedtime."
+        "description": "A buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time and at bedtime.",
+        "options": [
+          { "label": "Off", "value": "0" },
+          { "label": "Short", "value": "1" },
+          { "label": "Medium", "value": "2" },
+          { "label": "Long", "value": "3" }
+        ]
+      },
+      {
+        "type": "toggle",
+        "messageKey": "FLICK",
+        "defaultValue": true,
+        "label": "Replay on wrist flick",
+        "description": "Flick your wrist to see the current activity again."
       }
     ]
   },

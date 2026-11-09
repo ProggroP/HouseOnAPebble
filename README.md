@@ -4,7 +4,7 @@
 
 <img src="screenshots/shot_gabbro_morning.png" alt="Morning on Pebble Round 2"> <img src="screenshots/shot_gabbro_day.png" alt="Daytime on Pebble Round 2"> <img src="screenshots/shot_gabbro_night.png" alt="Night on Pebble Round 2"> <img src="screenshots/shot_emery_night.png" alt="Night on Pebble Time 2">
 
-A Pebble watchface (v1.0.0) for Pebble Time 2 (emery) and Pebble Round 2 (gabbro). [Get it in the Rebble App Store](https://apps.rePebble.com/39b2300fa3cf479d976f6443).
+A Pebble watchface (v1.1.0) for Pebble Time 2 (emery) and Pebble Round 2 (gabbro). [Get it in the Rebble App Store](https://apps.rePebble.com/39b2300fa3cf479d976f6443).
 
 ## What it does
 
@@ -28,9 +28,8 @@ The animation runs only during a walk and for about four seconds after arriving,
 ## Settings
 
 - **Moves to another room** - every minute, 5 minutes, 15 minutes or every hour. More frequent walks use a little more battery. At night your housemate stays in bed whatever you choose here.
-- **Vibrate before walking** - off by default. A short buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time, at bedtime and when getting up.
-
-Flick your wrist to see what your housemate is up to: the current activity plays for a few seconds.
+- **Vibrate before walking** - off, short (80 ms), medium (250 ms) or long (500 ms). A buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time, at bedtime and when getting up.
+- **Replay on wrist flick** - on by default. Flick your wrist to see what your housemate is up to: the current activity plays for a few seconds. Switched off, the accelerometer is not used at all.
 
 ## Artwork
 
@@ -47,12 +46,18 @@ pebble install --emulator gabbro
 
 ## Release notes
 
+### 1.1.0
+
+Vibration before a walk now comes in three strengths: short, medium and long. Replay on a wrist flick can be switched off.
+
 ### 1.0.0
 
 First release.
 
 ## Status
 
-Version 1.0.0 is in the store and tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
+Version 1.0.0 is in the store, 1.1.0 is ready. Tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
 
-Open points: not tested on real hardware, so the buzz, Quiet Time, the Clay page in a browser and battery use are unverified. Bedtimes and day/night times are fixed rather than following season or location.
+On a real watch (1.0.0): the Clay page works, the wrist flick triggers reliably, the figure is readable; the 80 ms buzz was barely noticeable, hence the strengths in 1.1.0.
+
+Open points: the new strengths and Quiet Time are not yet checked on a real watch, battery use is not measured. Bedtimes and day/night times are fixed rather than following season or location.

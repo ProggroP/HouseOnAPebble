@@ -146,7 +146,10 @@ static const GPoint STARS[] = {
 #define ACT_FRAME_MS       400
 #define ACT_FRAMES         10   // gut 4 Sekunden Taetigkeit
 #define ANNOUNCE_MS        3000 // Vorlauf nach dem Brummen, um auf die Uhr zu schauen
-#define ANNOUNCE_VIBE_MS   80   // kurz und sanft, kein Alarm
+#define VIBE_LEVEL_MAX     3
+// Brummdauer je Stufe (Index = Stufe, 0 = aus). Stufe 1 war in 1.0.0 die einzige
+// und am Handgelenk kaum zu spueren.
+static const uint32_t VIBE_MS[] = { 0, 80, 250, 500 };
 
 // ---- Orte ------------------------------------------------------------------
 typedef enum {
@@ -226,7 +229,8 @@ typedef enum { PHASE_DAY, PHASE_LOW_SUN, PHASE_NIGHT } Phase;
 typedef struct {
   uint8_t version;
   uint8_t interval_min;
-  uint8_t vibrate;
+  uint8_t vibrate;        // Stufe 0..3; 1.0.0 speicherte 0/1, passt als Stufe 1
+  uint8_t flick;          // seit 1.1.0: Schwung spielt die Taetigkeit erneut ab
 } Settings;
 
 typedef enum { STATE_IDLE, STATE_ANNOUNCING, STATE_WALKING, STATE_ACTING } State;
@@ -261,8 +265,12 @@ static void settings_load(void) {
   s_settings.version = SETTINGS_VERSION;
   s_settings.interval_min = INTERVAL_DEFAULT;
   s_settings.vibrate = 0;
+  s_settings.flick = 1;
   if (persist_exists(SETTINGS_KEY)) {
     persist_read_data(SETTINGS_KEY, &s_settings, sizeof(s_settings));
+  }
+  if (s_settings.vibrate > VIBE_LEVEL_MAX) {
+    s_settings.vibrate = 0;
   }
   switch (s_settings.interval_min) {
     case 1: case 5: case 15: case 60: break;
@@ -452,8 +460,9 @@ static void leave_for(Place target) {
     walk_to(target);
     return;
   }
-  static const uint32_t segments[] = { ANNOUNCE_VIBE_MS };
-  vibes_enqueue_custom_pattern((VibePattern) { .durations = segments, .num_segments = 1 });
+  static uint32_t segment;
+  segment = VIBE_MS[s_settings.vibrate];
+  vibes_enqueue_custom_pattern((VibePattern) { .durations = &segment, .num_segments = 1 });
   timer_cancel();
   s_announced_place = target;
   s_state = STATE_ANNOUNCING;
@@ -678,19 +687,39 @@ static void tap_handler(AccelAxisType axis, int32_t direction) {
   }
 }
 
+// Ohne Schwung-Option bleibt der Beschleunigungssensor ganz abbestellt.
+static bool s_flick_subscribed;
+
+static void flick_apply(void) {
+  if (s_settings.flick && !s_flick_subscribed) {
+    accel_tap_service_subscribe(tap_handler);
+  } else if (!s_settings.flick && s_flick_subscribed) {
+    accel_tap_service_unsubscribe();
+  }
+  s_flick_subscribed = s_settings.flick;
+}
+
+// Clay liefert eine Auswahl als Zeichenkette, einen Schalter als Zahl.
+static int32_t tuple_int(const Tuple *t) {
+  return (t->type == TUPLE_CSTRING) ? atoi(t->value->cstring) : t->value->int32;
+}
+
 static void inbox_received(DictionaryIterator *iter, void *context) {
   Tuple *t = dict_find(iter, MESSAGE_KEY_INTERVAL);
   if (t) {
-    // Clay liefert eine Auswahl als Zeichenkette
-    s_settings.interval_min = (t->type == TUPLE_CSTRING) ? atoi(t->value->cstring)
-                                                         : t->value->int32;
+    s_settings.interval_min = tuple_int(t);
   }
-  t = dict_find(iter, MESSAGE_KEY_VIBRATE);
+  t = dict_find(iter, MESSAGE_KEY_VIBE_LEVEL);
   if (t) {
-    s_settings.vibrate = t->value->int32 != 0;
+    s_settings.vibrate = tuple_int(t);
+  }
+  t = dict_find(iter, MESSAGE_KEY_FLICK);
+  if (t) {
+    s_settings.flick = tuple_int(t) != 0;
   }
   settings_save();
   settings_load();
+  flick_apply();
 }
 
 static void window_load(Window *window) {
@@ -728,7 +757,7 @@ static void init(void) {
   window_stack_push(s_window, true);
 
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
-  accel_tap_service_subscribe(tap_handler);
+  flick_apply();
   act_start();
 
   app_message_register_inbox_received(inbox_received);
@@ -740,7 +769,9 @@ static void init(void) {
 
 static void deinit(void) {
   tick_timer_service_unsubscribe();
-  accel_tap_service_unsubscribe();
+  if (s_flick_subscribed) {
+    accel_tap_service_unsubscribe();
+  }
   window_destroy(s_window);
   gbitmap_destroy(s_sprites);
   gbitmap_destroy(s_house);

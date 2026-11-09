@@ -22,13 +22,14 @@ Your watch now has a tenant. A little character in a bobble hat lives in a cross
 
 Every so often your housemate walks to another room, up and down the stairs. Sky and house follow the time of day, from a pink dawn to a starry night, when only the room your housemate is in stays lit. The lights go out at bedtime. Flick your wrist to see what is going on: the current activity plays for a few seconds.
 
-The animation only runs for a few seconds at a time, so the face stays still and easy on the battery the rest of the time. Made for Pebble Time 2 and Pebble Round 2, with the house drawn to fit each screen.
+The animation only runs for a few seconds at a time and the face stays still in between. Still, depending on how hooked you get, keep a charger handy: this watchface is built for charm, not for battery life. Made for Pebble Time 2 and Pebble Round 2, with the house drawn to fit each screen.
 
 
 SETTINGS
 
 - Moves to another room - every minute, every 5 minutes, every 15 minutes or every hour. More frequent walks use a little more battery. At night your housemate stays in bed whatever you choose.
-- Vibrate before walking - off by default. A short buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time, at bedtime and when getting up.
+- Vibrate before walking - off, short, medium or long. A buzz three seconds before your housemate sets off, so you can watch. Stays silent during Quiet Time, at bedtime and when getting up.
+- Replay on wrist flick - on by default. Flick your wrist to see the current activity again.
 
 12 or 24 hour format follows the watch setting.
 
@@ -39,6 +40,10 @@ Watchfaces
 
 
 RELEASE NOTES
+
+1.1.0
+
+Vibration before a walk now comes in three strengths: short, medium and long. Replay on a wrist flick can be switched off.
 
 1.0.0
 
