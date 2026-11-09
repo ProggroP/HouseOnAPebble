@@ -4,7 +4,7 @@
 
 <img src="screenshots/shot_gabbro_morning.png" alt="Morning on Pebble Round 2"> <img src="screenshots/shot_gabbro_day.png" alt="Daytime on Pebble Round 2"> <img src="screenshots/shot_gabbro_night.png" alt="Night on Pebble Round 2"> <img src="screenshots/shot_emery_night.png" alt="Night on Pebble Time 2">
 
-A Pebble watchface (v1.0.0) for Pebble Time 2 (emery) and Pebble Round 2 (gabbro).
+A Pebble watchface (v1.0.0) for Pebble Time 2 (emery) and Pebble Round 2 (gabbro). [Get it in the Rebble App Store](https://apps.rePebble.com/39b2300fa3cf479d976f6443).
 
 ## What it does
 
@@ -53,6 +53,6 @@ First release.
 
 ## Status
 
-Version 1.0.0 is finished and tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
+Version 1.0.0 is in the store and tested in the emulator on emery and gabbro: routine, walks, all seven activities, day/dusk/night, wrist flick, 12-hour display and the delay before a walk. Store screenshots come from `screenshots/presets.json`, which sets the emulator clock for each shot.
 
 Open points: not tested on real hardware, so the buzz, Quiet Time, the Clay page in a browser and battery use are unverified. Bedtimes and day/night times are fixed rather than following season or location.
